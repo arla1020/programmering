@@ -9,6 +9,18 @@ shop = {
 }
 
 sales = []
+# lägg spar text dokument grejerna här, innan while true loopen
+import ast
+
+#ladda tidigare data
+try:
+    with open("butik_data.txt", "r", encoding="utf-8") as f:
+        data = ast.literal_eval(f.read())
+        shop = data["shop"]
+        sales = data["sales"]
+except:
+    pass
+
 
 print("Välkommen till Butikshanteraren 3000")
 print('Inloggad som Butiksägare')
@@ -85,14 +97,18 @@ while True:
 
         total = 0
         for sale in sales:
-            amount = sale[name]["amount"]
-            price = sale[name]["price"]
-            total += amount * price
+            for item in sale:
+                amount = sale[item]["amount"]
+                price = sale[item]["price"]
+                total += amount * price
 
         
         print (f"Totala intäkter = {total} kr")
 
     elif choice == "q":
+        #spara till fil
+        with open("butik_data.txt", "w", encoding="utf-8") as f:
+            f.write(str({"shop": shop, "sales": sales}))
         break
     else:
         print("Ogiltigt Svar")
