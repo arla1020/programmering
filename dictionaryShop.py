@@ -113,4 +113,4 @@ while True:
     else:
         print("Ogiltigt Svar")
     
-    input("\nTryck enter för att fortsätta...")
+    input("\nTryck enter för att fortsätta...") 
