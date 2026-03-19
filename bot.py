@@ -1,9 +1,12 @@
 import discord
 import random
 from discord.ext import commands
+import donkenponkenförsäljning as donken
+import statistics
 
 intents = discord.Intents.default()
 intents.message_content = True
+
 
 # Här sätter vi prefixet till komma (,)
 bot = commands.Bot(command_prefix=',', intents=intents)
@@ -24,7 +27,7 @@ async def on_message(message):
 
 skämt_list = ["Vilken tid på året tar militärer sin examen?     Framåt mars", "Vilken fransk byggnad har alltid rätt?    Ej-feltornet.", "Varför spikade Hitler upp judar på väggen?    Han ville få det judesolerat.", "Vad har två ben och blöder?    En halv hund…", "Vad är det för likhet mellan en snöstorm och en man?    Man vet aldrig när den kommer, hur många tum man får eller hur länge den stannar."]
 gif_list = ["https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTFpZ28xc3JzYzU4N2pieG83cDhlNDdmNTdyajZoMXYxY3BwcGdnOSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LGePaj8mRTPEI/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmc4NWdzdGlldjVpbTg3cXNiMGVmYTRkNXV1bG1uZWNidm43cWs5NSZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/GCO5WNzFmlc0vjK8cA/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmc4NWdzdGlldjVpbTg3cXNiMGVmYTRkNXV1bG1uZWNidm43cWs5NSZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/ehwuBgKNA2NACoFa7w/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3cHEwcWl0M2RtMm13cnMwY256YWFxdmlubGNxazF0ZXQ1enE5c2Z6NiZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/ftHNle25rthTu19OAd/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNW8zY2NxM2N1aTJoMm5mb3EyaHI4ZWFrenNlbHFmYWZ4bDdhaWIyYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3tNAbEPc3CILr3h4K5/giphy.gif"]
-slap_gifs_list = ["https://media.giphy.com/media/Gf3AUz3eBNbTW/giphy.gif","https://media.giphy.com/media/jLeyZWgtwgr2U/giphy.gif","https://media.giphy.com/media/Zau0yrl17uzdK/giphy.gif","https://media.giphy.com/media/xT0BKiwgIPG5e0oKje/giphy.gif"]
+slap_gifs_list = ["https://media.giphy.com/media/Gf3AUz3eBNbTW/giphy.gif","https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2NrNWV6Z2U0a29pYnM3OWdhZG0yMGdqdHprd2hqdHRwa3B0OGQxMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/jauNHUg3yB9ZmDtzOv/giphy.gif","https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2NrNWV6Z2U0a29pYnM3OWdhZG0yMGdqdHprd2hqdHRwa3B0OGQxMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Xxdv7HeHulKDFAeif1/giphy.gif","https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2NrNWV6Z2U0a29pYnM3OWdhZG0yMGdqdHprd2hqdHRwa3B0OGQxMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3XlEk2RxPS1m8/giphy.gif"]
 slap_messages = ["gav en brutal örfil till","smällde till","knockade nästan","slapade skiten ur"]
 
 # Ditt nya kommando ,hej
@@ -47,7 +50,7 @@ async def ping(ctx):
 async def sex(ctx):
     await ctx.send('i love sex')
 
-# Kommandot ,hj'lp
+# Kommandot ,hjälp
 @bot.command()
 async def hjälp(ctx):
     await ctx.send('Ja har: ,hej ,namn ,ping ,sex ,hjälp ,introduktion ,roll ,skämt')
@@ -85,6 +88,44 @@ async def slap(ctx, member: discord.Member=None):
     await ctx.send(f"👋 {ctx.author.mention} {text} {member.mention}!")
     await ctx.send(gif)
    
+# Kommandot ,vänd
+@bot.command()
+async def vänd(ctx, *, sentence):
+    reversed_sentence = sentence[::-1]
+    await ctx.send(f"Du skrev {reversed_sentence}")
+
+# Kommandot ,räkna
+@bot.command()
+async def räkna(ctx, x : int, operator : str, y : int):
+    if operator == "+":
+        await ctx.send(f'{x} + {y} = {x+y}')
+    elif operator == "-":
+        await ctx.send(f'{x} - {y} = {x-y}')
+    elif operator == "*":
+        await ctx.send(f'{x} * {y} = {x*y}')
+    elif operator == "/":
+        await ctx.send(f'{x} / {y} = {x/y}')
+
+@bot.command()
+async def statestik(ctx, *, numbers_str):
+        numbers = numbers_str.split(" ")
+        numbers = list(map(int, numbers))
+
+        mean = statistics.mean(numbers)
+        median = statistics.median(numbers)
+        mode = statistics.multimode(numbers)
+
+        await ctx.send(
+            f"Medelvärde: {round(mean, 2)}\n"
+            f"Medianvärde: {median}\n"
+            f"Typvärde: {', '.join(map(str, mode))}"
+        )
+
+# Kommandot ,mcd
+@bot.command()
+async def mcd(ctx):
+    for i, money in enumerate(donken.inkomster_per_dag, start=1):
+        await ctx.send(f"Dag {i}, Tjänade: {money}")
     
 
-bot.run('MTQ4MTYyODk2MTU1NjY2NDQzMA.Gf29Ey.2Mi9zZKm6Nh2xyzXGsCEninqL_VhPMVnYTh_Vs')
+bot.run('MTQ4MTYyODk2MTU1NjY2NDQzMA.Gl8m_a.mtRuHNZKh6FKqVyqJ7lBLimyRqkBHO1c6EJ9JU')
