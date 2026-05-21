@@ -29,6 +29,8 @@ skämt_list = ["Vilken tid på året tar militärer sin examen?     Framåt mars
 gif_list = ["https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTFpZ28xc3JzYzU4N2pieG83cDhlNDdmNTdyajZoMXYxY3BwcGdnOSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/LGePaj8mRTPEI/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmc4NWdzdGlldjVpbTg3cXNiMGVmYTRkNXV1bG1uZWNidm43cWs5NSZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/GCO5WNzFmlc0vjK8cA/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmc4NWdzdGlldjVpbTg3cXNiMGVmYTRkNXV1bG1uZWNidm43cWs5NSZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/ehwuBgKNA2NACoFa7w/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3cHEwcWl0M2RtMm13cnMwY256YWFxdmlubGNxazF0ZXQ1enE5c2Z6NiZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/ftHNle25rthTu19OAd/giphy.gif", "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNW8zY2NxM2N1aTJoMm5mb3EyaHI4ZWFrenNlbHFmYWZ4bDdhaWIyYyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3tNAbEPc3CILr3h4K5/giphy.gif"]
 slap_gifs_list = ["https://media.giphy.com/media/Gf3AUz3eBNbTW/giphy.gif","https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2NrNWV6Z2U0a29pYnM3OWdhZG0yMGdqdHprd2hqdHRwa3B0OGQxMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/jauNHUg3yB9ZmDtzOv/giphy.gif","https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2NrNWV6Z2U0a29pYnM3OWdhZG0yMGdqdHprd2hqdHRwa3B0OGQxMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Xxdv7HeHulKDFAeif1/giphy.gif","https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2NrNWV6Z2U0a29pYnM3OWdhZG0yMGdqdHprd2hqdHRwa3B0OGQxMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3XlEk2RxPS1m8/giphy.gif"]
 slap_messages = ["gav en brutal örfil till","smällde till","knockade nästan","slapade skiten ur"]
+lösen_list = ["A","a","B","b","C","c","D","d","E","e","F","f","G","g","H","h","I","i","J","j","K","k","L","l","M","m","N","n","O","o","P","p","Q","q","R","r","S","s","T","t","U","u","V","v","W","w","X","x","Y","y","Z","z","1","2","3","4","5","6","7","8","9","0","!","?","_"]
+lösen_lists = ["R,F?-yxHh.Oq:qZl" ,"z`Bg6jYPv4>=.7N" ,"WZk;VsQ#PXJjSI" ,"yzNy{S66aW4#%5!" ,"ToMz{aKSd@<zjy0q" ,"x^06&ch@8M*AfWfW" ,"Oc%No9,-s.GX`3J" , "Z^I~TvPL}9o#<$n", "a%zAPDuvJZV9P=LJ", "Aew`yVD,_?.e#ieQ", "kci/G;nK%mINIH'T", "n>BYzC59t0besla)", "D*crSB>xwiy4RZU_", "Y0UXpzM^dSowtaF", "DB>p^;aTh\jby=Yq", "N7jOBghR;Z821f*j", "Anxs/uO`(-qvCI5", "nc(}g-lTlSsKCh<", "p{!Ql%Mri\Y/I", "DF7;`q.Ck^68V:g"]
 
 # Ditt nya kommando ,hej
 @bot.command()
@@ -126,6 +128,16 @@ async def statestik(ctx, *, numbers_str):
 async def mcd(ctx):
     for i, money in enumerate(donken.inkomster_per_dag, start=1):
         await ctx.send(f"Dag {i}, Tjänade: {money}")
+
+# Kommandot ,palindrom
+@bot.command()
+async def palindrom(ctx):
+    await ctx.send('')
+
+# Kommandot ,lösenord
+@bot.command()
+async def lösenord(ctx):
+    await ctx.send(f"Här e ett lösen till dej som inte kan komma på ett eget: {random.choice(lösen_lists)}")
     
 
-bot.run('MTQ4MTYyODk2MTU1NjY2NDQzMA.Gl8m_a.mtRuHNZKh6FKqVyqJ7lBLimyRqkBHO1c6EJ9JU')
+bot.run('')
